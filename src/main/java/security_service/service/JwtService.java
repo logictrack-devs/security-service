@@ -16,6 +16,7 @@ public class JwtService {
                 .expiresAt(Instant.now().plus(2, ChronoUnit.HOURS))
                 .subject(u.getUsername())
                 .claim("roles", List.of("ROLE_" + u.getRol().name()))
+                .claim("email", u.getEmail())
                 .build();
         return encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
